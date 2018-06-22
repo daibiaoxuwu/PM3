@@ -1,0 +1,111 @@
+//双斜杠"//"和井号"#"都可以注释。
+//以下打“*”号的是一定要有的信息，否则不必要有或者已有缺省信息。
+background			#设置背景
+	color= 0.1 0.1 0.1		//背景颜色					[缺省值(0,0,0)]
+end				#结束设置背景
+
+camera				#设置摄像机信息
+	algorithm= PM			//使用的算法（RC/RT/PM/PPM/SPPM）		[缺省值PPM]
+	O= 0 -8 2			//感光点的位置					[*]
+	N= 0 1 -0.1			//摄像机的朝向					[*]
+	image_H= 600			//bmp图像的象素高				[缺省值420]
+	image_W= 600			//bmp图像的象素宽				[缺省值420]
+	lens_H= 1			//摄像机镜头的高（与镜头到感光点距离之比）		[缺省值0.88]
+	lens_W= 1			//摄像机镜头的宽					[缺省值0.88]
+	shade_quality= 4		//计算面积光源光照的质量				[缺省值4]
+	drefl_quality= 15		//计算镜面漫反射的质量				[缺省值4]
+	max_hitpoints= 4000000		//光子图可容纳光子数				[缺省值4000000]
+	iterations= 2000		//PPM迭代次数					[缺省值5000]
+	reduction= 0.7			//PPM衰减系数					[缺省值0.7]
+	max_photons= 10000000		//PM时最大光子数					[缺省值500000（PM时推荐值为1e7）]
+	emit_photons= 18000000		//总发射光子数					[缺省值100000（PM时推荐值为1e7）]
+	sample_photons= 500		//PM时碰撞点的采样光子数				[缺省值10（PM时推荐值为500）]
+	sample_dist= 0.1		//采样时最大半径					[缺省值0.1]
+end
+
+light area			#设置一个矩形光源
+	O= 0 0 6			//矩形光源的中心点				[*]
+	Dx= 0.5 0 0			//矩形光源的x半轴				[*]
+	Dy= 0 0.5 0			//矩形光源的y半轴				[*]
+	color= 50 50 50			//光源的色光					[*]
+end
+
+primitive plane			#Left Wall
+	N= 1 0 0
+	R= 5
+	color= 1 0.2 0.2			
+	diff= 0.3
+end
+primitive plane			#Right Wall
+	N= 1 0 0
+	R= -5
+	color= 0.2 0.2 1			
+	diff= 0.3
+end
+primitive plane			#Floor
+	N= 0 0 1
+	R= 0
+	color= 1 1 1			
+	diff= 0.5
+	refl= 0.3
+	drefl= 0.15
+	texture= floor.bmp
+	Dx= 12 0 0
+	Dy= 0 12 0
+end
+primitive plane			#Ceiling
+	N= 0 0 1
+	R= -10
+	color= 1 1 1			
+	diff= 0.5
+end
+
+
+primitive polyhedron
+	O= 2.5 -1.2 0.84
+	size= 2 2 2
+	angles= 0 0 -75
+	mesh= horse.obj
+	refr= 1
+	rindex= 1.7
+	absor= 1 2 3
+end
+
+primitive polyhedron
+	O= -2 -1 0.99
+	size= 2 2 2
+	angles= 0 0 30
+	mesh= bunny.obj
+	diff= 0.6
+	spec= 0.3
+	color= 1 0.5 0.5
+end
+
+primitive polyhedron
+	O= 0 2 1.42
+	size= 4 4 4
+	angles= 0 0 90
+	mesh= dragon.obj
+	diff= 0.6
+	color= 0.5 1 0.5
+end
+
+primitive polyhedron
+	O= 0.5 -1.5 1.01
+	size= 2 2 2
+	angles= 0 0 -25
+	mesh= kitten.obj
+	diff= 0.1
+	refl= 0.5
+	spec= 0.3
+	color= 1 1 1
+end
+
+primitive polyhedron
+	O= -3 4.6 3
+	size= 2 2 2
+	mesh= rocker.obj
+	refr= 1
+	rindex= 1.7
+	absor= 2 2 0.5
+end

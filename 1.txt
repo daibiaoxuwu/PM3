@@ -1,0 +1,2 @@
+g++ main.cpp vector3.cpp color.cpp bmp.cpp material.cpp scene.cpp camera.cpp primitive.cpp plane.cpp sphere.cpp triangle.cpp polyhedron.cpp light.cpp pointLight.cpp areaLight.cpp objReader.cpp triangleTree.cpp photonmap.cpp raytracer.cpp photontracer.cpp `pkg-config --cflags --libs opencv` -o main.exe
+

@@ -1,0 +1,55 @@
+//双斜杠"//"和井号"#"都可以注释。
+//以下打“*”号的是一定要有的信息，否则不必要有或者已有缺省信息。
+background			#设置背景
+	color= 0.1 0.1 0.1		//背景颜色					[缺省值(0,0,0)]
+end				#结束设置背景
+
+camera				#设置摄像机信息
+	algorithm= PM			//使用的算法（RC/RT/PM/PPM/SPPM）		[缺省值PPM]
+	O= 0 -8 2
+	N= 0 1 0
+	
+	image_H= 200
+	image_W= 200
+	lens_H= 1
+	lens_W= 1
+	shade_quality= 4
+	drefl_quality= 15
+	
+	iterations= 2000
+	reduction= 0.7
+	max_photons= 100000
+	emit_photons= 150000
+	sample_photons= 500
+	sample_dist= 0.1
+end
+
+light area			#设置一个矩形光源
+	O= 0 0 6			//矩形光源的中心点				[*]
+	Dx= 0.5 0 0			//矩形光源的x半轴				[*]
+	Dy= 0 0.5 0			//矩形光源的y半轴				[*]
+	color= 50 50 50			//光源的色光					[*]
+end
+ 
+primitive plane			#Floor
+	N= 0 0 1
+	R= 0
+	color= 1 1 1			
+	diff= 0.5
+	refl= 0.3
+	texture= floor.bmp
+	Dx= 20 0 0
+	Dy= 0 20 0
+end
+
+primitive polyhedron
+	O= 2.5 0.5 0.84
+	size= 2 2 2
+	angles= 0 0 -75
+	mesh= bunny3.obj
+	refr= 0.95
+	diff= 0.05
+	color= 1 1 1
+	rindex= 1.7
+	absor= 1 2 3
+end
